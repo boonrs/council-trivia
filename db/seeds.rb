@@ -7,3 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Candidate.create!(name: "Julie Andrews", description: "Wonderful")
 Candidate.create!(name: "Olo Wigley", description: "Baby")
+
+Question.create!(body: "What... is your name?")
+Question.create!(body: "What... is your quest?")
+Question.create!(body: "What... is your favorite color?")
