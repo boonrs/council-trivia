@@ -1,0 +1,26 @@
+<% unless @candidates.nil? %>
+<ul>
+  <h1>You most align with the answers from:</h1>
+<% @candidates.each do |candidate| %>
+  <li><%= candidate.name %></li> 
+<% end %>
+</ul>
+<% else %>
+  <h1>No recommendations for you!</h1>
+<% end %>
+
+<% unless @answers.nil? %>
+<br />
+<h2>Individual answers</h2>
+<% @answers.each do |answer| %>
+  <ul>
+  <%= content_tag_for :li, answer.question do %>
+    [<%= answer.candidate.name %>] <%= answer.question.body %>
+    <ul><li class="answer"><%= answer.body %></li><ul>
+  <% end %>
+  </ul>
+<% end %>
+<% else %>
+  <h1>You need to answer questions to get results.</h1>
+<% end %>
+<%= button_to 'Take it again', root_path, method: :get %>
