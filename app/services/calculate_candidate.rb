@@ -4,12 +4,6 @@ class CalculateCandidate
   end
 
   def execute
-    answers_by_candidates = @answers.group_by(&:candidate)
-    max = (answers_by_candidates.map { |k, v| v.count }).max
-    (
-      answers_by_candidates.map do |k, v|
-        (v.count == max) ? k : 0
-      end
-    ).select { |a| a != 0 }
+    @answers.group_by(&:candidate).to_a.sort_by{ |a| a.second.count }.reverse!
   end
 end

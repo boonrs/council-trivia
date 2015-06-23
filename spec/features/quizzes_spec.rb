@@ -27,11 +27,9 @@ describe "quizzes" do
     click_on "Submit"
 
     answers.each do |answer|
-      within "#question_#{answer.question.id}" do
-        expect(page).to have_content answer.candidate.name
-        expect(page).to have_content answer.body
-        expect(page).to have_content answer.question.body
-      end
+      expect(page).to have_content answer.candidate.name
+      expect(page).to have_content answer.body
+      expect(page).to have_content answer.question.body
     end
   end
 end

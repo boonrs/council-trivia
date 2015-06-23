@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   def results
     questions = params[:questions]
     if questions
-      @answers = Answer.where(id: questions.values)
-      @candidates = CalculateCandidate.new(@answers).execute
+      answers = Answer.where(id: questions.values)
+      @candidates = CalculateCandidate.new(answers).execute
     end
   end
 end

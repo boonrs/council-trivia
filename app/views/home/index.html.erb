@@ -1,17 +1,21 @@
-<%= form_tag do %>
-  <ul>
-    <%= content_tag_for :li, @questions do |question| %>
-      <%= question.body %>
+<div class="naming">
+  <div class="is-hard">
+    <%= form_tag do %>
       <ul>
-        <%= content_tag_for :li, question.answers do |answer| %>
-          <%= label_tag "questions[#{question.id}]_#{answer.id}" do %>
-            <%= radio_button_tag "questions[#{question.id}]", answer.id %>
-            <%= answer.body %>
-          <% end %>
+        <%= content_tag_for :li, @questions do |question| %>
+          <%= question.body %>
+          <ul>
+            <%= content_tag_for :li, question.answers do |answer| %>
+              <%= label_tag "questions[#{question.id}]_#{answer.id}" do %>
+                <%= radio_button_tag "questions[#{question.id}]", answer.id %>
+                <%= answer.body %>
+              <% end %>
+            <% end %>
+          </ul>
         <% end %>
       </ul>
-    <% end %>
-  </ul>
 
-  <%= submit_tag "Submit" %>
-<% end %>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+</div>

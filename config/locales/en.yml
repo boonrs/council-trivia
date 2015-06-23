@@ -17,3 +17,6 @@ en:
 
   titles:
     application: Council-trivia
+    home:
+      index: Quiz!
+      results: Vote!
