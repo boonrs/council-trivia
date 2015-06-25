@@ -5,8 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-julie = Candidate.create!(name: "Julie Andrews", description: "Wonderful")
-olo = Candidate.create!(name: "Olo Wigley", description: "Baby")
+julie = Candidate.create!(
+  name: "Julie Andrews",
+  photo_url: "http://bit.ly/1GKPiiX",
+  twitter: "HottestStartups",
+  website: "http://t.co/3gDtETAFpu"
+)
+olo = Candidate.create!(
+  name: "Olo Wigley",
+  photo_url: "http://bit.ly/1CHvFHF",
+  twitter: "twoheadlines",
+  website: "http://codeforamerica.org"
+)
 
 name_question = Question.create!(body: "What... is your name?")
 quest_question = Question.create!(body: "What... is your quest?")

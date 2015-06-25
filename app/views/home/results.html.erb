@@ -3,12 +3,25 @@
   <div class="cards">
     <% @candidates.each do |value| %>
       <div class="card">
-        <div class="card-image">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+        <div class="card-candidate">
+          <div class="card-candidate-img">
+            <%= image_tag value.first.photo_url, size: "100x100" %>
+          </div>
+
+          <div class="card-candidate-info">
+            <h1><%= value.first.name %> </h1>
+            <% unless value.first.twitter.nil? %>
+              <%= link_to "@#{value.first.twitter}", "http://twitter.com/#{value.first.twitter}" %><br />
+            <% end %>
+
+            <% unless value.first.website.nil? %>
+              <%= link_to value.first.website, value.first.website %>
+            <% end %>
+          </div>
         </div>
 
         <div class="card-header">
-          <%= value.first.name %>
+          <%= value.second.count %> matches.
         </div>
 
         <div class="card-copy">
@@ -27,6 +40,4 @@
 <% else %>
   <h1>You should answer some questions if you want to see something here.</h1>
 <% end %>
-
-<%= button_to 'Take it again', root_path, method: :get %>
 </div>
