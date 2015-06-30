@@ -5,7 +5,7 @@
         <%= content_tag_for :li, @questions do |question| %>
           <%= question.body %>
           <ul>
-            <%= content_tag_for :li, question.answers do |answer| %>
+            <%= content_tag_for :li, question.answers.shuffle do |answer| %>
               <%= label_tag "questions[#{question.id}]_#{answer.id}" do %>
                 <%= radio_button_tag "questions[#{question.id}]", answer.id %>
                 <%= answer.body %>
