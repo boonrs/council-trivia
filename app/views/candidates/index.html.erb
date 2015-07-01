@@ -1,0 +1,43 @@
+<div class="vertical-tabs-container">
+  <div class="vertical-tabs">
+    <% @candidates.each_with_index do |candidate, index| %>
+      <a href="javascript:void(0)" class="js-vertical-tab vertical-tab <%= 'is-active' if index==0 %>" rel="tab<%= candidate.id%>">
+        <%= candidate.name %>
+      </a>
+    <% end %>
+  </div>
+
+  <div class="vertical-tab-content-container">
+    <% @candidates.each do |candidate| %>
+      <a href="" class="js-vertical-tab-accordian-heading vertical-tab-accordion-heading" rel="tab<%= candidate.id %>">
+        <%= candidate.name %>
+      </a>
+      <div id="tab<%= candidate.id %>" class="js-vertical-tab-content vertical-tab-content">
+        <div class="grid-items">
+          <div class="grid-item">
+            <%= image_tag candidate.photo_url, size: "100x100" %>
+          </div>
+          <div class="grid-item grid-item-big">
+            <% if candidate.twitter.present? %>
+              <%= link_to "@#{candidate.twitter}", "http://twitter.com/#{candidate.twitter}" %><br />
+            <% end %>
+
+            <% if candidate.website.present? %>
+              <%= link_to candidate.website, candidate.website %>
+            <% end %>
+          </div>
+          <div class="grid-item grid-item-very-big">
+            <ul>
+              <% candidate.answers.each do |answer| %>
+                <li class="question">
+                  <%= answer.question.body %>
+                  <ul><li class="answer"><%= answer.body %></li></ul>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

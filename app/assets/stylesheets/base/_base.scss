@@ -13,6 +13,10 @@
 @import "typography";
 
 
+$compliment-color: #FFF4EB;
+$compliment-top-background: lighten($compliment-color, 1%);
+$compliment-bottom-background: darken($compliment-color, 10%);
+
 .main {
   @include clearfix;
   padding: 20px 0;
@@ -310,12 +314,9 @@
 }
 
 .card {
-  $texture-color: #FFF4EB;
-  $texture-top-background: lighten($texture-color, 1%);
-  $texture-bottom-background: darken($texture-color, 10%);
   $base-border-color: FFD3B0 !default;
   $base-border-radius: 3px !default;
-  $base-background-color: $texture-color !default;
+  $base-background-color: $compliment-color !default;
   $base-spacing: 1.5em !default;
   $action-color: #477DCA !default;
   $dark-gray: #333 !default;
@@ -332,7 +333,7 @@
   @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
   // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal  
-  @include texture(180deg, $texture-top-background, $texture-bottom-background, 16, 1); 
+  @include texture(180deg, $compliment-top-background, $compliment-bottom-background, 16, 1); 
   background-color: $card-background;
   border-radius: $base-border-radius;
   border: $card-border;
@@ -344,7 +345,7 @@
 
   .card-candidate {
     // gradient color 1, gradient color 2, gradient angle, texture-number, 0=inverted or 1=normal  
-    @include texture(180deg, $texture-top-background, $texture-bottom-background, 16, 0); 
+    @include texture(180deg, $compliment-top-background, $compliment-bottom-background, 16, 0); 
     height: 100px;
     max-height: 100px;
 
@@ -420,3 +421,216 @@
   }
 }
 
+.vertical-tabs-container {
+  $base-border-color: $compliment-bottom-background !default;
+  $base-border-radius: 3px !default;
+  $base-background-color: $compliment-color !default;
+  $base-line-height: 1.5em !default;
+  $base-spacing: 1.5em !default;
+  $action-color: #0000FF !default;
+  $dark-gray: #333 !default;
+  $medium-screen: em(640) !default;
+  $base-font-color: $dark-gray !default;
+  $tab-border-color: $base-border-color;
+  $tab-border: 1px solid $tab-border-color;
+  $tab-border-radius: $base-border-radius;
+  $tab-content-background: lighten($tab-border-color, 10%);
+  $tab-active-color: $tab-content-background;
+  $tab-inactive-color: $base-background-color;
+  $vertical-tabs-height: 100%;
+  $vertical-tab-mode: $medium-screen;
+
+  @include clearfix;
+  border-radius: $tab-border-radius;
+  border: $tab-border;
+  margin-bottom: $base-spacing;
+  overflow: hidden;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: $action-color;
+    text-decoration: none;
+  }
+
+  .vertical-tabs {
+    display: none;
+
+    @include media($vertical-tab-mode) {
+      background-color: $tab-inactive-color;
+      display: inline;
+      float: left;
+      height: $vertical-tabs-height;
+      width: 20%;
+    }
+  }
+
+  .vertical-tab {
+    @include media($vertical-tab-mode) {
+      border-bottom: $tab-border;
+      display: block;
+      font-weight: bold;
+      margin-right: -1px;
+      padding: ($base-spacing / 2) ($gutter / 2);
+
+      &.is-active {
+        background-color: $tab-content-background;
+        margin-right: -1px;
+      }
+    }
+  }
+
+  a.vertical-tab-accordion-heading,
+  a.vertical-tab {
+    color: $dark-gray;
+  }
+
+  .vertical-tab:focus {
+    outline: none;
+  }
+
+  .vertical-tab-content-container {
+    display: block;
+    margin: 0 auto;
+
+    a:focus {
+      outline: none;
+    }
+
+    @include media($vertical-tab-mode) {
+      @include size(80% $vertical-tabs-height);
+      background-color: $tab-content-background;
+      display: inline-block;
+    }
+  }
+
+  .vertical-tab-content {
+    background-color: $tab-content-background;
+    padding: $base-spacing $gutter;
+
+    p {
+      color: $base-font-color;
+      line-height: $base-line-height;
+    }
+
+    @include media($vertical-tab-mode) {
+      border: none;
+      display: none;
+    }
+  }
+
+  .vertical-tab-accordion-heading {
+    background-color: $tab-inactive-color;
+    border-top: $tab-border;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    padding: $base-spacing / 2 $gutter / 2;
+
+    @include media($vertical-tab-mode) {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      color: $action-color;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &.is-active {
+      background: $tab-active-color;
+      border-bottom: none;
+    }
+  }
+}
+
+@mixin grid-item-columns($columns) {
+  width: (100% / 12) * $columns;
+}
+
+.grid-items {
+  $action-color: #477DCA !default;
+  $base-background-color: $compliment-color !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+  $grid-items-background: $base-background-color;
+  $grid-item-background: desaturate($action-color, 30%);
+  $grid-item-border-size: 9px;
+  $grid-item-columns: 4;
+  $grid-item-big-columns: 8;
+  $grid-item-very-big-columns: 12;
+  $grid-item-color: $compliment-color;
+  $grid-item-height: 100%;
+
+  @include clearfix;
+
+  .grid-item {
+    @include transition (all 0.2s ease-in-out);
+    border-bottom: $grid-item-border-size solid $grid-items-background;
+    border-left: ($grid-item-border-size / 2) solid $grid-items-background;
+    border-right: ($grid-item-border-size / 2) solid $grid-items-background;
+    border-top: 0;
+    float: left;
+    height: $grid-item-height;
+    overflow: hidden;
+    outline: none;
+    padding: 2em;
+    text-align: center;
+
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-columns);
+    }
+
+    .grid-item img {
+      display: block;
+      height: 100px;
+      margin-bottom: 1em;
+      margin: auto;
+    }
+
+    .grid-item h1 {
+      font-size: 1.3em;
+      margin-bottom: 0.4em;
+    }
+
+    .grid-item p {
+      line-height: 1.5em;
+      margin: auto;
+
+      @include media($medium-screen) {
+        max-width: 70%;
+      }
+    }
+  }
+
+  .grid-item-big {
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-big-columns);
+    }
+
+    p {
+      @include media($medium-screen) {
+        max-width: 60%;
+      }
+    }
+  }
+
+  .grid-item-very-big {
+    text-align: left;
+
+    p {
+      @include media($medium-screen) {
+        max-width: 60%;
+      }
+    }
+
+    @include media($large-screen) {
+      @include grid-item-columns($grid-item-very-big-columns);
+    }
+  }
+}
